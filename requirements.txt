@@ -84,5 +84,3 @@ wheel==0.45.1
 wrapt==1.17.2
 gdown==5.2.0
 
-# External Git requirement
-git+https://github.com/JustAnotherArchivist/snscrape.git
