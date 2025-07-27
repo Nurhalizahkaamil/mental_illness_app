@@ -1,0 +1,59 @@
+/* Latar belakang biru muda */
+html, body, #root, .appview-container, section.main, div.block-container {
+    background-color: #DAEDFF !important;
+}
+
+/* Container utama form */
+div.block-container {
+    background-color: white !important;
+    border-radius: 30px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    max-width: 95% !important;        
+    width: 95% !important;           
+    margin: 3rem auto !important;     
+    padding: 2rem 3rem !important;     
+}
+
+/* Hide sidebar, header, footer */
+nav[aria-label="Sidebar"],
+button[title="Open sidebar"],
+header, footer {
+    display: none !important;
+}
+
+/* Judul besar */
+h2 {
+    color: #0F6FC6 !important;
+    font-weight: 700 !important;
+    text-align: center;
+    font-size: 1.8rem !important; /* Ubah sesuai kebutuhan, misalnya 1.8rem = 28.8px */
+}
+
+
+/* Input field styling */
+.stTextInput > div > input {
+    background-color: #e2e8f0 !important;
+    border-radius: 10px !important;
+    height: 3rem !important;
+    color: black !important;
+    font-size: 1.1em !important;
+}
+
+/* Tombol submit */
+button.stButton > button {
+    background-color: #2f70c6;
+    color: white !important;
+    font-weight: 700;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    text-decoration: none !important; 
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+button.stButton > button:hover {
+    background-color: #0369a1 !important;
+}

@@ -1,0 +1,48 @@
+/* Latar belakang biru muda */
+html, body, #root, .appview-container, section.main {
+    background-color: #DAEDFF !important;
+}
+
+/* Judul */
+h1, h2 {
+    font-size: 2.2rem !important;
+    font-weight: bold !important;
+    color: #1f2937 !important;
+}
+
+/* Input */
+.stTextInput input {
+    font-size: 1.1em;
+    background-color: #f1f5f9 !important;
+    border-radius: 10px !important;
+    color: black !important;
+}
+
+/* Tombol */
+div.stButton > button {
+    background-color: #2f70c6 !important;
+    color: white !important;
+    border: 2px solid #2f70c6 !important;
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Hover & active */
+div.stButton > button:hover,
+div.stButton > button:active {
+    background-color: #0369a1 !important;
+    border: 2px solid #0369a1 !important;
+    color: white !important;
+}
+
+
+/* Expander untuk tweet */
+details > summary {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0f172a !important;
+}

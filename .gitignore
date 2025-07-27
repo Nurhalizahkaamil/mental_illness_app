@@ -1,0 +1,68 @@
+# =========================
+# Python & Streamlit
+# =========================
+
+# Virtual environments
+.venv/
+.venv310/
+
+# Environment and config files
+.env
+settings.json
+
+# Bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Log files
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# =========================
+# Model & Results
+# =========================
+
+# Model files
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.npy
+*.npz
+
+# TensorBoard logs
+runs/
+events.out.*
+
+# Folder tempat model atau zip disimpan
+# ZIP hasil download
+result.zip
+
+# Folder hasil ekstrak (opsional kalau kamu mau tetap lokal aja)
+models/
+
+# =========================
+# OS & Editor Files
+# =========================
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# =========================
+# Streamlit specific
+# =========================
+
+# Streamlit temp cache
+.streamlit/config.toml
+.streamlit/secrets.toml
