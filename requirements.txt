@@ -50,10 +50,6 @@ soupsieve==2.7
 streamlit==1.46.1
 sympy==1.13.3
 tenacity==9.1.2
-# Removed: tensorboard==2.19.0
-# Removed: tensorboard-data-server==0.7.2
-# Removed: tensorflow==2.19.0
-# Removed: keras, libclang, flatbuffers, protobuf
 termcolor==3.1.0
 threadpoolctl==3.6.0
 tokenizers==0.21.2
@@ -72,3 +68,10 @@ Werkzeug==3.1.3
 wheel==0.45.1
 wrapt==1.17.2
 gdown==5.2.0
+
+# Tambahan untuk kompatibilitas TensorFlow dan Transformers
+tensorflow==2.12.0
+keras==2.12.0
+protobuf==3.20.3
+flatbuffers==23.5.26
+libclang==16.0.6
