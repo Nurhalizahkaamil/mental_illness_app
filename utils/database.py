@@ -1,26 +1,50 @@
 import streamlit as st
 import psycopg2
 import json
+import os
+from datetime import datetime
+
 
 class Database:
     def __init__(self):
         """
-        Koneksi ke PostgreSQL menggunakan kredensial dari Streamlit secrets.
+        Coba koneksi ke PostgreSQL.
+        Kalau gagal, fallback ke mode dummy (tanpa DB, simpan ke file lokal).
         """
-        self.conn = psycopg2.connect(
-            dbname=st.secrets["DB_NAME"],
-            user=st.secrets["DB_USER"],
-            password=st.secrets["DB_PASS"],
-            host=st.secrets["DB_HOST"],
-            port=st.secrets.get("DB_PORT", 5432)
-        )
-        self.cursor = self.conn.cursor()
-        self.ensure_schema()
+        self.is_dummy = False
+        self.data = []
+        self.dummy_file = "dummy_predictions.json"
+
+        # Load file dummy kalau ada
+        if os.path.exists(self.dummy_file):
+            try:
+                with open(self.dummy_file, "r", encoding="utf-8") as f:
+                    self.data = json.load(f)
+            except Exception:
+                self.data = []
+
+        try:
+            self.conn = psycopg2.connect(
+                dbname=st.secrets["DB_NAME"],
+                user=st.secrets["DB_USER"],
+                password=st.secrets["DB_PASS"],
+                host=st.secrets["DB_HOST"],
+                port=st.secrets.get("DB_PORT", 5432)
+            )
+            self.cursor = self.conn.cursor()
+            self.ensure_schema()
+            print("[INFO] Terhubung ke PostgreSQL.")
+        except Exception as e:
+            print(f"[WARNING] Gagal koneksi ke database: {e}")
+            print("[INFO] Menggunakan mode dummy (data disimpan di file lokal).")
+            self.is_dummy = True
 
     def ensure_schema(self):
         """
-        Pastikan tabel predictions tersedia. Jika tidak, buat baru.
+        Buat tabel jika belum ada (mode PostgreSQL saja).
         """
+        if self.is_dummy:
+            return
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS predictions (
                 id SERIAL PRIMARY KEY,
@@ -37,19 +61,80 @@ class Database:
         """)
         self.conn.commit()
 
-    def insert_result(self, result):
+    def _to_float_safe(self, value):
+        """
+        Ubah ke float dengan aman (return None kalau gagal).
+        """
         try:
-            tweets_text = result["tweets"] if isinstance(result["tweets"], list) else [str(result["tweets"])]
-            username = str(result["username"])
-            label_lv1 = str(result["label_lv1"])
-            confidence_lv1 = float(result["confidence_lv1"].item() if hasattr(result["confidence_lv1"], "item") else result["confidence_lv1"])
-            label_lv2 = str(result["label_lv2"])
-            confidence_lv2 = float(result["confidence_lv2"].item() if hasattr(result["confidence_lv2"], "item") else result["confidence_lv2"])
-            final_status = str(result["final_status"])
-            debug_flag = str(result["debug_flag"])
+            if hasattr(value, "item"):
+                return float(value.item())
+            return float(value)
+        except Exception:
+            return None
 
-            self.cursor.execute("""
-                INSERT INTO predictions (
+    def _normalize_tweets(self, tweets):
+        """
+        Ubah berbagai format tweets menjadi list of string.
+        """
+        tweets_text = []
+        if isinstance(tweets, list):
+            for t in tweets:
+                if isinstance(t, dict):
+                    if "text" in t:
+                        tweets_text.append(t["text"])
+                    elif "status" in t:
+                        tweets_text.append(f"[STATUS:{t['status']}]")
+                    else:
+                        tweets_text.append(str(t))
+                else:
+                    tweets_text.append(str(t))
+        else:
+            tweets_text = [str(tweets)]
+        return tweets_text
+
+    def insert_result(self, result):
+        """
+        Simpan data ke DB atau file dummy sesuai mode.
+        """
+        try:
+            tweets_text = self._normalize_tweets(result.get("tweets", []))
+            username = str(result.get("username", "UNKNOWN"))
+            label_lv1 = str(result.get("label_lv1") or "UNKNOWN")
+            confidence_lv1 = self._to_float_safe(result.get("confidence_lv1"))
+            label_lv2 = str(result.get("label_lv2") or "UNKNOWN")
+            confidence_lv2 = self._to_float_safe(result.get("confidence_lv2"))
+            final_status = str(result.get("final_status") or "UNKNOWN")
+            debug_flag = str(result.get("debug_flag") or "")
+
+            if self.is_dummy:
+                entry = {
+                    "username": username,
+                    "label_lv1": label_lv1,
+                    "confidence_lv1": confidence_lv1,
+                    "label_lv2": label_lv2,
+                    "confidence_lv2": confidence_lv2,
+                    "final_status": final_status,
+                    "debug_flag": debug_flag,
+                    "tweets": tweets_text,
+                    "created_at": datetime.now().isoformat()
+                }
+                self.data.append(entry)
+                with open(self.dummy_file, "w", encoding="utf-8") as f:
+                    json.dump(self.data, f, ensure_ascii=False, indent=2)
+                print("[INFO] Data disimpan (mode dummy).")
+            else:
+                self.cursor.execute("""
+                    INSERT INTO predictions (
+                        username,
+                        label_lv1,
+                        confidence_lv1,
+                        label_lv2,
+                        confidence_lv2,
+                        final_status,
+                        debug_flag,
+                        tweets
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                """, (
                     username,
                     label_lv1,
                     confidence_lv1,
@@ -57,43 +142,42 @@ class Database:
                     confidence_lv2,
                     final_status,
                     debug_flag,
-                    tweets
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            """, (
-                username,
-                label_lv1,
-                confidence_lv1,
-                label_lv2,
-                confidence_lv2,
-                final_status,
-                debug_flag,
-                json.dumps(tweets_text)
-            ))
-            self.conn.commit()
-            print("[INFO] Data berhasil disimpan ke database.")
+                    json.dumps(tweets_text, ensure_ascii=False)
+                ))
+                self.conn.commit()
+                print("[INFO] Data berhasil disimpan ke database.")
         except Exception as e:
             print(f"[ERROR] Gagal menyimpan data: {e}")
-            self.conn.rollback()
+            if not self.is_dummy:
+                self.conn.rollback()
 
     def get_label_lv2_stats(self):
         """
-        Ambil jumlah masing-masing label_lv2 yang sudah masuk ke sistem.
+        Ambil statistik label_lv2.
         """
         try:
-            self.cursor.execute("""
-                SELECT label_lv2, COUNT(*) FROM predictions
-                GROUP BY label_lv2
-                ORDER BY COUNT(*) DESC;
-            """)
-            results = self.cursor.fetchall()
-            return {row[0]: row[1] for row in results}
+            if self.is_dummy:
+                stats = {}
+                for row in self.data:
+                    label = row.get("label_lv2", "UNKNOWN")
+                    stats[label] = stats.get(label, 0) + 1
+                return stats
+            else:
+                self.cursor.execute("""
+                    SELECT label_lv2, COUNT(*) FROM predictions
+                    GROUP BY label_lv2
+                    ORDER BY COUNT(*) DESC;
+                """)
+                results = self.cursor.fetchall()
+                return {row[0]: row[1] for row in results}
         except Exception as e:
             print(f"[ERROR] Gagal mengambil statistik label_lv2: {e}")
             return {}
 
     def close(self):
         """
-        Menutup koneksi database dengan aman.
+        Tutup koneksi kalau bukan mode dummy.
         """
-        self.cursor.close()
-        self.conn.close()
+        if not self.is_dummy:
+            self.cursor.close()
+            self.conn.close()

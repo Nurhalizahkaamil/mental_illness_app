@@ -144,7 +144,29 @@ gangguan_data = {
             "Terapi utama untuk PTSD adalah terapi pemrosesan kognitif (CPT), terapi eksposur, dan EMDR (Eye Movement Desensitization and Reprocessing). "
             "Psikiater bisa memberikan obat seperti SSRI untuk membantu mengurangi gejala kecemasan dan mimpi buruk."
         )
-    }
+    },
+    "adhd": {
+    "judul": "Attention Deficit Hyperactivity Disorder (ADHD)",
+    "deskripsi": (
+        "ADHD adalah gangguan perkembangan saraf yang memengaruhi kemampuan seseorang "
+        "untuk memusatkan perhatian, mengendalikan impuls, dan mengatur tingkat aktivitas. "
+        "Kondisi ini biasanya muncul sejak masa kanak-kanak, namun bisa berlanjut hingga dewasa."
+    ),
+    "gejala": (
+        "Sulit memusatkan perhatian, sering lupa, mudah teralihkan, kesulitan mengatur tugas, "
+        "gelisah atau tidak bisa diam, berbicara berlebihan, impulsif dalam mengambil keputusan."
+    ),
+    "solusi": (
+        "Gunakan pengingat atau to-do list untuk mengatur aktivitas harian. "
+        "Bagi tugas besar menjadi bagian-bagian kecil agar lebih mudah diselesaikan. "
+        "Istirahat sejenak di antara pekerjaan untuk menjaga fokus."
+    ),
+    "terapi": (
+        "Penanganan ADHD dapat mencakup terapi perilaku, konseling, serta pengobatan seperti "
+        "stimulant (methylphenidate) atau non-stimulant sesuai rekomendasi dokter. "
+        "Dukungan keluarga dan lingkungan juga berperan besar dalam membantu pengelolaan gejala."
+    )
+}
 }
 
 # === SET BACKGROUND WAVE ===
@@ -157,10 +179,10 @@ with st.container():
         st.markdown("""
         <h1 style='font-size: 3rem; color: #002F6C; font-weight: bold;'>MentalCare: Deteksi Dini Gangguan Kesehatan Mental</h1>
         <p style="max-width: 550px; font-size: 1.1rem;">
-        Aplikasi berbasis AI yang membantu mengenali potensi adanya gangguan kesehatan mental dari media sosial X berdasarkan aktivitas terbaru pengguna dengan mengambil 5 tweet terakhir. Ini bukan alat diagnosis medis, namun bisa menjadi langkah awal untuk memahami kondisi emosional kamu secara lebih dalam. Kamu bisa memilih untuk melakukan deteksi otomatis atau input manual dengan memasukkan username akun X kamu. Kamu bisa memilih untuk otomatis input lewat Username X atau manual inpu 5 kalimat
+        Aplikasi berbasis AI yang membantu mengenali potensi adanya gangguan kesehatan mental dari media sosial X berdasarkan aktivitas terbaru pengguna dengan mengambil 5 tweet terakhir. Ini bukan alat diagnosis medis, namun bisa menjadi langkah awal untuk memahami kondisi emosional kamu secara lebih dalam. Kamu bisa memilih untuk melakukan deteksi otomatis atau input manual dengan memasukkan username akun X kamu. Kamu bisa memilih untuk otomatis input lewat Username X atau manual input dan ceritakan kondisi mentalmu di story box
         </p>
         <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-            <a href="/home" target="_self" class="custom-button">Mulai Otomatis</a>
+            <a href="/home" target="_self" class="custom-button">Otomatis</a>
             <a href="/manual_input" target="_self" class="custom-button" style="background-color: #4caf50;">Input Manual</a>
         </div>
 

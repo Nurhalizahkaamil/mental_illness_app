@@ -1,0 +1,188 @@
+[
+  {
+    "username": "griffinarks",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9116535782814026,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.972353458404541,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "{'status': 'cached', 'tweets_for_db': ['https://t.co/gJG8dtV8ND', 'ketika kamu sudah sampai dititik memilih untuk tidak bicara, memilih untuk tidak ribut, mengiyakan semuanya, kamu sudah berada disituasi tercapek, karena kamu merasa apa yang kamu sampaikan juga tidak akan diterima olehnya.', '@FaseDewasa_ asli iya banget', '@Jjnbllh besok aja lah nab, gw masih di luar ini', 'pengen deh punya pasangan tuh yang sama-sama ngerasa ;\\n\\n“beruntung untuk saling memiliki.”'], 'tweets_for_display': [{'date': None, 'text': 'https://t.co/gJG8dtV8ND'}, {'date': None, 'text': 'ketika kamu sudah sampai dititik memilih untuk tidak bicara, memilih untuk tidak ribut, mengiyakan semuanya, kamu sudah berada disituasi tercapek, karena kamu merasa apa yang kamu sampaikan juga tidak akan diterima olehnya.'}, {'date': None, 'text': '@FaseDewasa_ asli iya banget'}, {'date': None, 'text': '@Jjnbllh besok aja lah nab, gw masih di luar ini'}, {'date': None, 'text': 'pengen deh punya pasangan tuh yang sama-sama ngerasa ;\\n\\n“beruntung untuk saling memiliki.”'}]}"
+    ],
+    "created_at": "2025-08-11T12:50:11.095050"
+  },
+  {
+    "username": "griffinarks",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9991106390953064,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.7422950267791748,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "https://t.co/gJG8dtV8ND",
+      "ketika kamu sudah sampai dititik memilih untuk tidak bicara, memilih untuk tidak ribut, mengiyakan semuanya, kamu sudah berada disituasi tercapek, karena kamu merasa apa yang kamu sampaikan juga tidak akan diterima olehnya.",
+      "@FaseDewasa_ asli iya banget",
+      "@Jjnbllh besok aja lah nab, gw masih di luar ini",
+      "pengen deh punya pasangan tuh yang sama-sama ngerasa ;\n\n“beruntung untuk saling memiliki.”"
+    ],
+    "created_at": "2025-08-11T13:07:14.705494"
+  },
+  {
+    "username": "sdmla___",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9595074653625488,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.9775649309158325,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "knpa rasanya tidak terima dan sakit melihat dia dgn tenang menjalankan hidupnya, sedangkan aku? tiap hari dihantui rasa kecewa dan trauma",
+      "aku kira ia yg terakhir ya allah aku merasa separuhku dan separuhna kami besatu tp apa yg aku rasaan beda dgn apa yg ia rasaan",
+      "ngpa ya allah ngpa jalanna harus ck ini, ngpa ia pck jd sejahat itu ia lupa kah dgn aku, ngp hati na jd begitu batu saat melakukan semua hal itu, bahkan sejak Januari ya allah tp aku tk berpaling sedikitpun sampai saat sakit skrg pun aku masih berharap",
+      "Bismillahirrahmanirrahim\nI'm done",
+      "sudah cukup harus sadar mulai hari ini dan dst hargai dirimu sendiri kasihani dan sayangi dirimu sendiri dia se gak mau itu bahkan org buta sekalipun bisa melihatnya",
+      "ngelek ia yg pck ngejalani hari2 na seperti biasa bahkan terlihat lebih fun tnpa prnh nanya keadaan ku terpikir dgn aku, 3 thn aku dgn ia seolah aku tk prnh hadir dlm hidupna, sedangkan aku tiap hari harus perang dgn pikiran hati dan perasaan ku",
+      "https://t.co/4swYIwGPWx",
+      "https://t.co/jM6dWmdBfw",
+      "Tiga tahun aku menemanimu,\nmenjaga janji, merajut mimpi.\nLalu kau datang dengan satu kalimat:\n\"Aku tak lagi mencintaimu… ada dia sekarang.\"\nBegitu mudah kau lepaskan aku,\nseakan tiga tahun hanyalah cerita singkat\nyang bisa kau tutup tanpa rasa.",
+      "Tiga tahun kita berjalan bersama,\nlalu di pertengahan jalan,\nkau berhenti…\ndan memilih pergi.\n\nKau bilang tak lagi punya perasaan,\nseolah lupa pada aku, pada kita,\npada semua janji yang pernah kau genggam."
+    ],
+    "created_at": "2025-08-12T23:31:53.535849"
+  },
+  {
+    "username": "griffinarks",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9991106390953064,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.7422950267791748,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "https://t.co/gJG8dtV8ND",
+      "ketika kamu sudah sampai dititik memilih untuk tidak bicara, memilih untuk tidak ribut, mengiyakan semuanya, kamu sudah berada disituasi tercapek, karena kamu merasa apa yang kamu sampaikan juga tidak akan diterima olehnya.",
+      "@FaseDewasa_ asli iya banget",
+      "@Jjnbllh besok aja lah nab, gw masih di luar ini",
+      "pengen deh punya pasangan tuh yang sama-sama ngerasa ;\n\n“beruntung untuk saling memiliki.”"
+    ],
+    "created_at": "2025-08-13T01:18:46.369157"
+  },
+  {
+    "username": "fasedewasa_",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.8000425100326538,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.9644622206687927,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "@griffinarks ok bang",
+      "RT: sebagian orang punya support system yg kuat, entah dari keluarga, saudara atau teman.\ntapi sebagian orang lainnya, hanya punya diri mereka sendiri, ga ada tempat untuk berbagi.\njadi, kalau ada seseorang yg mempercayaimu untuk dijadikan support system, semoga kamu mengerti, okay?",
+      "terkadang, marah itu juga perlu. supaya orang lain tau, kalau sudah disabarin itu jangan malah jadi seenaknya.",
+      "@griffinarks 😂",
+      "@griffinarks hm"
+    ],
+    "created_at": "2025-08-13T01:53:41.736049"
+  },
+  {
+    "username": "anon",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9991490840911865,
+    "label_lv2": "ptsd",
+    "confidence_lv2": 0.9995941519737244,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "Aku trauma denga apa yang terjadi padaku 5 tahun lalu, terkadang jika ada kejadian yang memicu traumaku itu bisa mengakibatkan mimpi buruk yang terjadi selama beberapa hari",
+      "Aku benar-benar kesulitan untuk menghadapi trauma ini, aku ketakutan dengan gelap itu"
+    ],
+    "created_at": "2025-08-13T02:04:52.426329"
+  },
+  {
+    "username": "fasedewasa_",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9972214698791504,
+    "label_lv2": "bipolar",
+    "confidence_lv2": 0.9920045733451843,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "@griffinarks ok bang",
+      "RT: sebagian orang punya support system yg kuat, entah dari keluarga, saudara atau teman.\ntapi sebagian orang lainnya, hanya punya diri mereka sendiri, ga ada tempat untuk berbagi.\njadi, kalau ada seseorang yg mempercayaimu untuk dijadikan support system, semoga kamu mengerti, okay?",
+      "terkadang, marah itu juga perlu. supaya orang lain tau, kalau sudah disabarin itu jangan malah jadi seenaknya.",
+      "@griffinarks 😂",
+      "@griffinarks hm",
+      "kalo kamu cape, itu wajar gapapa kok istirahat aja dulu, jangan dipaksain, atur napas, atur pikiran juga. kumpulin dulu energy baru, buang energy negatif yg kemarin bikin kamu cape. control emotion itu penting banget, agar kamu bisa terus semangat, jangan lupa juga berdo'a ya!",
+      "makin kesini makin paham kalo kita cuma butuh pasangan yang bisa dan mau grow together, bukan cuma sekedar menye-menye bucin doang. tapi pasangan yg bisa diajak komunikasi, deeptalk, tukar pikiran, support satu sama lain, bisa diajak ngobrol hal apapun dan rumah buat pulang.",
+      "@griffinarks ril",
+      "@griffinarks baca ini hei",
+      "normalisasikan mengajari diri sendiri untuk tidak mengumumkan kabar baik sampai semuanya benar-benar terjadi, karena tidak semua rencana berjalan sesuai ekspektasi, dan orang iri itu pasti ada, jadi lebih baik kita hindari.\npremature announcements attract jealous spirit."
+    ],
+    "created_at": "2025-08-13T02:57:19.234084"
+  },
+  {
+    "username": "trya_91",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9887418150901794,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.9991822838783264,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "Rasa lelah yg berlebihan, sakit tubuh yg menambah, stress, depresi, apa Lg yg harus aku lewati ya Rabb?\nHarus kmna membawa diri ini,\nHari yg sering disakiti namun harus lukanya ku balut sendiri, rasanya harus kmna aku membawa diri,\nAku kehilangan semangat, aku kehilangan diriku",
+      "@yxgkyyy1 @randomable_ Sepemikiran",
+      "Berisikkk bangettttt isi kepala😡😭",
+      "@erikalan98 @masjalah Sama , aku pake baju khusus buat sholat.",
+      "@sari861194 @erikalan98 @masjalah Gak apa klo kerjankan ibaratnya kondisi gak dirumah. Pasti agak ribet",
+      "@Muleeeeex @doly_85 @masjalah Betuul betull betuulllll",
+      "@kivay12 @masjalah Beda kondisi yahh , hadehhh ,kita gak lagi perang n gak kena musibah juga kan?? Soalnya aku kyk igun , subuh pun aku mandi dlu , ganti bajunya yg bagus tertutup, sapu dlu lantainya , pastiin bersih, pakai wewangian pun bagus yg tanpa alkohol.",
+      "Ya Rabb😫",
+      "@lagingawal Mv yg kita perdebatkan , tp lupa debatin bagian mananya , oh si cewek lain nelpon 👊🏼😭",
+      "Kok bisa dah lama gak liat moment nya dah berapa bulan juga dah biasa aja tp td tiba² td pas cari sesuatu eh muncul moment mereka lagi aku kok  sedih sihh 😭👊🏼😡 \nNo no no yahhh !?!!"
+    ],
+    "created_at": "2025-08-13T03:27:49.534349"
+  },
+  {
+    "username": "anon",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.999549925327301,
+    "label_lv2": "bipolar",
+    "confidence_lv2": 0.6272145509719849,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "Aku suka lupa dengan tingkat yang tinggi",
+      "Contohnya, aku bolak balik keluar masuk rumah pas mau pergi cuma buat ngecek kran, kompor, jendela, dan semua barang elektronik di rumah aku tuh nyala atau nggaa, ya begitulah kadang harus aku list biar ga lupaa mulu"
+    ],
+    "created_at": "2025-08-13T06:53:57.121517"
+  },
+  {
+    "username": "anon",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9946247935295105,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.7886244058609009,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "aku lagi stress banget hari ini",
+      "tugasnya numpuk buat ga bisa tidur"
+    ],
+    "created_at": "2025-08-13T14:29:22.236822"
+  },
+  {
+    "username": "anon",
+    "label_lv1": "mental_illness",
+    "confidence_lv1": 0.9946247935295105,
+    "label_lv2": "depression",
+    "confidence_lv2": 0.7886244058609009,
+    "final_status": "terindikasi",
+    "debug_flag": "ok",
+    "tweets": [
+      "aku lagi stress banget hari ini",
+      "tugasnya numpuk buat ga bisa tidur"
+    ],
+    "created_at": "2025-08-13T14:34:42.806407"
+  }
+]

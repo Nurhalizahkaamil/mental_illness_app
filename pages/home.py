@@ -4,6 +4,10 @@ from io import BytesIO
 import base64
 import json
 import pathlib
+from datetime import datetime, timezone, timedelta
+import locale
+import re  # 🔹 Untuk regex highlight
+
 from utils.twitter_scraper import get_recent_tweets_with_cache
 from utils.predict import predict_user_and_save
 from utils.database import Database
@@ -46,6 +50,22 @@ except Exception as e:
     st.error(f"Gagal memuat label mapping: {e}")
     st.stop()
 
+# 🔹 Load keyword gangguan mental dari JSON
+try:
+    with open("models/gangguan_keyword.json", "r", encoding="utf-8") as f:
+        keyword_map = json.load(f)
+except Exception as e:
+    st.error(f"Gagal memuat keyword gangguan: {e}")
+    keyword_map = {}
+
+# 🔹 Fungsi highlight kata kunci
+def highlight_keywords(text, keyword_map):
+    for _, keywords in keyword_map.items():
+        for kw in keywords:
+            pattern = r"\b" + re.escape(kw) + r"\b"
+            text = re.sub(pattern, f"**{kw}**", text, flags=re.IGNORECASE)
+    return text
+
 # ─────────────────────────────────────────────
 # Database
 # ─────────────────────────────────────────────
@@ -56,6 +76,22 @@ except Exception as e:
     st.stop()
 
 # ─────────────────────────────────────────────
+# Locale untuk tanggal Indonesia
+# ─────────────────────────────────────────────
+try:
+    locale.setlocale(locale.LC_TIME, "id_ID.UTF-8")
+except:
+    try:
+        locale.setlocale(locale.LC_TIME, "Indonesian_indonesia")
+    except:
+        locale.setlocale(locale.LC_TIME, "")
+
+# ─────────────────────────────────────────────
+# Variabel awal
+# ─────────────────────────────────────────────
+result = None
+
+# ─────────────────────────────────────────────
 # UI
 # ─────────────────────────────────────────────
 col1, col2 = st.columns([1.2, 1])
@@ -64,7 +100,7 @@ with col1:
     st.header("Ayo Mulai Identifikasi!")
     username_input = st.text_input("Masukkan Username X kamu")
 
-    if st.button("Identifikasi Sekarang"):
+    if st.button("Prediksi Sekarang"):
         username = username_input.strip().replace("@", "").lower()
 
         if not username:
@@ -73,15 +109,15 @@ with col1:
             tweets = get_recent_tweets_with_cache(
                 username=username,
                 force_refresh=True,
-                limit=5
+                limit=10
             )
 
             if tweets is None:
                 st.error("Gagal mengambil tweet. Username mungkin tidak valid.")
-                st.markdown("[Isi Manual Postingan](./manual_input)")
+                st.link_button("Isi Manual Postingan", "./manual_input")
             elif isinstance(tweets, str) or not tweets:
                 st.warning("Tidak ada tweet yang bisa dianalisis.")
-                st.markdown("[Isi Manual Postingan](./manual_input)")
+                st.link_button("Isi Manual Postingan", "./manual_input")
             else:
                 with st.spinner("Sedang menganalisis tweet..."):
                     result = predict_user_and_save(username, tweets, db)
@@ -89,9 +125,8 @@ with col1:
                 st.success("Identifikasi berhasil dilakukan.")
                 st.markdown("### Berikut Detail Klasifikasi Akunmu:")
 
-                final_status = result.get("final_status", "normal")
-                label_lv2 = result.get("label_lv2", "-")
                 label_lv1 = result.get("label_lv1", "none")
+                label_lv2 = result.get("label_lv2", "-")
 
                 if label_lv1 == "none":
                     st.info("Belum ditemukan indikasi kuat dari pola psikologis yang mengkhawatirkan.")
@@ -105,14 +140,36 @@ with col1:
                         url=f"/detail?gangguan={label_lv2.lower()}"
                     )
 
-                if result.get("tweets"):
-                    with st.expander("Lihat 5 Postingan yang Dianalisis"):
-                        for i, tweet in enumerate(result["tweets"], 1):
-                            tipe = tweet.get("type", "-").capitalize() if isinstance(tweet, dict) else "Tweet"
-                            text = tweet.get("text", tweet) if isinstance(tweet, dict) else tweet
-                            if len(text) > 300:
-                                text = text[:300] + "..."
-                            st.write(f"**Tweet {i}** ({tipe}): {text}")
+# ─────────────────────────────────────────────
+# Tampilkan Tweet + Tanggal + Highlight Kata Kunci
+# ─────────────────────────────────────────────
+if result and result.get("tweets"):
+    with st.expander("Lihat Postingan yang Dianalisis"):
+        WIB = timezone(timedelta(hours=7))  # UTC+7
+
+        for i, tweet in enumerate(result["tweets"], 1):
+            tipe = tweet.get("type", "-").capitalize() if isinstance(tweet, dict) else "Tweet"
+            tanggal = tweet.get("created_at", "-") if isinstance(tweet, dict) else "-"
+
+            # Format tanggal → human readable (Bahasa Indonesia + WIB)
+            try:
+                if "T" in tanggal:  # Format ISO 8601
+                    tanggal_obj = datetime.fromisoformat(tanggal.replace("Z", "+00:00")).astimezone(WIB)
+                else:  # Format custom dari API
+                    tanggal_obj = datetime.strptime(tanggal, "%Y-%m-%d %H:%M:%S WIB").replace(tzinfo=WIB)
+
+                tanggal_str = tanggal_obj.strftime("%A, %d %B %Y pukul %H:%M WIB")
+            except Exception:
+                tanggal_str = tanggal
+
+            text = tweet.get("text", tweet) if isinstance(tweet, dict) else tweet
+            if len(text) > 300:
+                text = text[:300] + "..."
+
+            # 🔹 Highlight kata kunci di teks tweet
+            highlighted_text = highlight_keywords(text, keyword_map)
+
+            st.markdown(f"**Tweet {i}** ({tipe})  \n**{tanggal_str}**  \n{highlighted_text}")
 
 with col2:
     st.markdown(f"""
